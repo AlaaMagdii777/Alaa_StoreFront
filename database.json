@@ -1,0 +1,16 @@
+{
+  "dev": {
+    "driver": "pg",
+    "host": { "ENV": "POSTGRES_HOST" },
+    "database": { "ENV": "DEV_DB" },
+    "user": { "ENV": "Alaa_USER" },
+    "password": { "ENV": "Alaa_PASSWORD" }
+  },
+  "test": {
+    "driver": "pg",
+    "host": { "ENV": "POSTGRES_HOST" },
+    "database": { "ENV": "Alaa_TEST_DB" },
+    "user": { "ENV": "Alaa_USER" },
+    "password": { "ENV": "Alaa_PASSWORD" }
+  }
+}
