@@ -49,10 +49,17 @@ npm run db:up
 ```
 npm run db:down
 ```
-#
-## Database Configuration PORT
+# Server Configuration 
+- http://localhost:3000/
 
-- Default port  ``5432``
+- port running 3000
+# How To Connect On DataBase 
+### SERER ROOT USER
+```
+psql -h localhost -U alaa postgres
+
+```
+### CREATE DATA_BASE
 #
 - ### Create 2 Databases 
 ```
@@ -61,6 +68,20 @@ CREATE DATABASE storefront;
 ```
 CREATE DATABASE storefront_test;
 ```
+## Connect_on_Two_DataBase
+
+```
+\c storefront
+
+```
+
+```
+\c storefront_test
+
+```
+## Database Configuration PORT
+
+- Default port  ``5432``
 
 - Configure .env to fit your environment (look at .env.example).
 

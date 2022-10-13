@@ -8,7 +8,7 @@ const orderInstance = new Order();
 const createOrder = async (request: Request, response: Response) => {
   try {
     const orderData: OrderType = {
-      user_id: response.locals.auth.user.id,
+      user_id: request.params.id as unknown as number,
       order_status: request.body.order_status,
       products: request.body.products,
     };
@@ -17,7 +17,7 @@ const createOrder = async (request: Request, response: Response) => {
       !orderData.order_status.match(/^(pending|fulfilled)$/)
     ) {
       response
-        .status(400)
+        .status(500)
         .send('Please check the Product data & order_status are required');
       return;
     }
@@ -29,31 +29,31 @@ const createOrder = async (request: Request, response: Response) => {
 };
 const UserDoneOrders = async (request: Request, response: Response) => {
   try {
-    const userId = response.locals.auth.user.id;
+    const userId = request.params.id as unknown as number;
     const userOrders = await orderInstance.UserDoneOrders(userId);
     response.json({ userCompletedOrders: userOrders });
   } catch (err) {
-    response.status(400).json({ message: err });
+    response.status(500).json({ message: err });
   }
 };
 
 const CurrentUserOrder = async (request: Request, response: Response) => {
   try {
-    const userId = response.locals.auth.user.id;
+    const userId = request.params.id as unknown as number;
     const userOrder = await orderInstance.CurrentUserOrder(userId);
     response.json({ userCurrentOrder: userOrder });
   } catch (err) {
-    response.status(400).json({ message: err });
+    response.status(500).json({ message: err });
   }
 };
 
 const orderRouter = (app: Application) => {
   //REQUEST_CREATE_ORDER
-  app.post('/orders/create', verifyToken, createOrder);
+  app.post('/orders/create/:id', verifyToken, createOrder);
   //REQUEST_USER_ORDER
-  app.get('/orders/user', verifyToken, CurrentUserOrder);
+  app.get('/orders/user/:id', verifyToken, CurrentUserOrder);
   //REQUEST_ORDER_COMPLETED
-  app.get('/orders/user/completed', verifyToken, UserDoneOrders);
+  app.get('/orders/user/completed/:id', verifyToken, UserDoneOrders);
 };
 
 export default orderRouter;
