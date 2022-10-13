@@ -32,8 +32,18 @@ describe('User_Handler', () => {
           .expect(200);
       });
 
-
- //GET_USERS
+//LOGIN
+   it('Login', async () => {
+    const response: Response = await request
+      .post('/users/login')
+      .send({
+        userName: 'alaa',
+        password: 'Alaa1234',
+      })
+      .expect(200);
+  });
+  
+//GET_USERS
 
  it('GET_USERS', async () => {
     const response: Response = await request
@@ -43,14 +53,18 @@ describe('User_Handler', () => {
       .expect(200);
   });     
 
-//LOGIN
-   it('Login', async () => {
+
+//UPDATE_USERS
+it('UPDATE_USER_ONE', async () => {
     const response: Response = await request
-      .post('/users/login')
+      .put('/users/1')
+      .set('Authorization', 'Bearer ' + token)
       .send({
-        userName: 'Alaa',
+        userName: 'AlaaUdacity',
         password: 'Alaa1234',
-      })
-      .expect(200);
+        firstName: 'Alaa',
+        lastName: 'Magdy',
+      });
+    expect(response.status).toBe(200);
   });
 });
