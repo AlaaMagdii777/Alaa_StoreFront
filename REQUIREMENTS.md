@@ -39,11 +39,11 @@
 -------------------------------------
 
 ## Orders
- Columns      |            Type
-------------- | -----------------------
-  id          |     integer
-  user_id     |     integer (FK)
-  status      |     StatusOfProduct ENUM('pending', 'fulfilled')
+ Columns       |            Type
+-------------  | -----------------------
+  id           |     integer
+  user_id      |     integer (FK)
+  order_status |     StatusOfProduct ENUM('pending', 'fulfilled')
 
 -----------------------------------------------------------------
 
