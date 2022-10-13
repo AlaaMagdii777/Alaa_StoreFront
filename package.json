@@ -12,7 +12,7 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "db:up": "db-migrate up",
     "db:down": "db-migrate down",
-    "test": "npm run build && npm run jasmine",
+    "test": "ENV=test && npm run build && npm run jasmine",
     "jasmine": "db-migrate --env test up && ENV=test jasmine && db-migrate db:drop test"
   },
   "author": "Udacity",

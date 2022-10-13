@@ -51,7 +51,7 @@ server.use((request: Request, response: Response): void => {
 });
 
 server.listen(3000, function () {
-  console.log(`The server is running in Port ${SERVER_PORT}`);
+  console.log(`Hello Alaa Magdy The server is running in Port ${SERVER_PORT}`);
 });
 
 export default server;
